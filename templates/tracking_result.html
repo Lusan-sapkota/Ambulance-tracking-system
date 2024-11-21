@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambulance Tracking</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tracking-result.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script 
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDM62kUhJjHGcBOt57v8S7zCSu7Wc6nXJg&libraries=marker&v=beta" 
+    async 
+    defer>
+    </script>
+</head>
+<body>
+
+    <div class="container mt-3">
+        <div class="d-flex align-items-center justify-content-center mb-2">
+            <h2>Real-Time Ambulance Tracking</h2>
+            <img src="{{ url_for('static', filename='images/logos/swiftaid-logo.png') }}" alt="logo" width="50" height="40" class="align-self-top ms-3">
+        </div>
+
+        <div class="row">
+            <!-- Info Section -->
+            <div class="col-md-5">
+                <div class="details">
+                    <p><strong>Patient Name:</strong> {{ patient_name }}</p>
+                    <p><strong>Current Location:</strong> Latitude {{ latitude }}, Longitude {{ longitude }}</p>
+                    <p><strong>Timestamp:</strong> {{ timestamp }}</p>
+                    <p><strong>Estimated Arrival Time:</strong> {{ estimated_time_minutes }} minutes</p>
+                    <p><strong>Pickup Location:</strong> {{ pickup_address }}</p>
+                    <p>&rArr; Latitude {{ pickup_lat }}, Longitude {{ pickup_lng }}</p>
+                    <p><strong>Destination:</strong> {{ destination_address }}</p>
+                    <p>&rArr; Latitude {{ destination_lat }}, Longitude {{ destination_lng }}</p>
+                    <p><strong>Distance:</strong> {{ distance_km }} km</p>
+                    <p><strong>Average Speed:</strong> 80 km/h</p>
+                    <p><strong>Has Arrived:</strong> {% if has_arrived %}Yes{% else %}No{% endif %}</p>
+                    <p>&rArr; Arrival Time: {{ arrival_time }}</p>
+                    <div class="mb-3">
+                        <a href="{{ url_for('tracking') }}" class="btn btn-primary">Track Another Ambulance</a>
+                        <a href="{{ url_for('index') }}" class="btn btn-info">Back to Home</a>
+                    </div>
+                    <div class="alert alert-warning d-flex align-items-center" role="alert">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-exclamation-circle me-2" viewBox="0 0 16 16">
+                            <path d="M8 0a8 8 0 1 0 8 8A8 8 0 0 0 8 0zm0 14a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm0-4a1 1 0 0 1-1-1V4a1 1 0 0 1 2 0v6a1 1 0 0 1-1 1z"/>
+                        </svg>
+                        <div><strong>Note:</strong> The map shows the real-time route of the ambulance rather then the realtime movement due to lack of calculation data.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map Section -->
+            <div class="col-md-7">
+                <div id="map" style="height: 500px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const pickupLocation = { lat: parseFloat("{{ pickup_lat }}"), lng: parseFloat("{{ pickup_lng }}") };
+        const destinationLocation = { lat: parseFloat("{{ destination_lat }}"), lng: parseFloat("{{ destination_lng }}") };
+    
+        let map, marker, directionsService, directionsRenderer;
+        const ambulanceIcon = {
+          url: '{{ url_for("static", filename="images/icon_amb.webp") }}',
+          scaledSize: new google.maps.Size(40, 40),
+        };
+    
+        let routeSteps = [];
+        let routePath = [];
+    
+        function initMap() {
+          map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: pickupLocation
+          });
+    
+          marker = new google.maps.Marker({
+            position: pickupLocation,
+            map: map,
+            title: "Ambulance Location",
+            icon: ambulanceIcon
+          });
+    
+          directionsService = new google.maps.DirectionsService();
+          directionsRenderer = new google.maps.DirectionsRenderer({
+            map: map,
+            suppressMarkers: true
+          });
+    
+          const   
+     request = {
+            origin: pickupLocation,
+            destination: destinationLocation,
+            travelMode: google.maps.TravelMode.DRIVING,
+          };
+    
+          directionsService.route(request, (result, status) => {
+            if (status === google.maps.DirectionsStatus.OK) {
+              directionsRenderer.setDirections(result);   
+    
+              routeSteps = result.routes[0].legs[0].steps;
+    
+              routePath = [];
+              for (let i = 0; i < routeSteps.length; i++) {
+                routePath.push(routeSteps[i].start_location);
+              }
+              routePath.push(routeSteps[routeSteps.length - 1].end_location);
+    
+              animateAmbulanceAlongRoute();
+            } else {
+              console.error('Directions request failed due to ' + status);
+            }
+          });
+        }
+    
+        function animateAmbulanceAlongRoute() {
+          if (routePath.length === 0) return;
+    
+          const totalDistance = calculateTotalDistance();
+          const totalTimeInHours = totalDistance / targetSpeed;
+          const totalTimeInMilliseconds = totalTimeInHours * 3600000;
+    
+          let stepIndex = 0;
+          let startTime = Date.now();
+    
+          function moveToNextPosition() {
+            if (stepIndex < routePath.length - 1) {
+              const start = routePath[stepIndex];
+              const end = routePath[stepIndex + 1];
+    
+              const distance = google.maps.geometry.spherical.computeDistanceBetween(start, end);
+              const timeToNextPoint = distance / targetSpeed * 3600000;
+    
+              const elapsedTime = Date.now() - startTime;
+              const percentage = elapsedTime / timeToNextPoint;
+    
+              if (percentage < 1) {
+                const newPosition = google.maps.geometry.spherical.interpolate(start, end, percentage);
+                marker.setPosition(newPosition);
+              } else {
+                marker.setPosition(end);
+                stepIndex++;
+                startTime = Date.now();
+              }
+    
+              setTimeout(moveToNextPosition, timeToNextPoint);
+            } else {
+              console.log("Animation complete");
+            }
+          }
+    
+          moveToNextPosition();
+        }
+    
+        function calculateTotalDistance() {
+          let totalDistance = 0;
+    
+          for (let i = 0; i < routePath.length - 1; i++) {
+            const start = routePath[i];
+            const end = routePath[i + 1];
+            totalDistance += google.maps.geometry.spherical.computeDistanceBetween(start, end);
+          }
+    
+          return totalDistance;
+        }
+    
+        google.maps.event.addDomListener(window, 'load', initMap);
+      </script>
+</body>
+</html>

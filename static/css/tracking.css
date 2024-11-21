@@ -1,0 +1,44 @@
+/* Set the background color and text color for the page */
+body {
+    background-color: #212529;
+    color: #fff;
+}
+
+/* Style the container */
+.container {
+    background-color: #343a40;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+/* Heading styles */
+h2 {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+/* Style for alert messages */
+.alert {
+    margin-top: 20px;
+}
+
+/* Style for form labels and inputs */
+.form-label {
+    color: #ddd;
+}
+
+/* Button styling */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+/* Flash message styling */
+.alert {
+    border-radius: 5px;
+}

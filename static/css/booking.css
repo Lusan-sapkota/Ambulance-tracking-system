@@ -1,0 +1,25 @@
+/* general styles  */
+body {
+    background-color: #212529 !important;
+}
+.alert {
+    margin-top: 20px;
+}
+
+/* styling for form labels and inputs */
+.form-control {
+    color: #2e3132 !important;
+}
+
+.form-control::placeholder {
+    color: #2e3132!important;
+    opacity: 1;
+}
+
+.form-control:focus {
+    color: #2e3132 !important;
+    border-color: #007bff !important;
+}
+.form-control#contact {
+    color: #2e3132 !important;
+}        

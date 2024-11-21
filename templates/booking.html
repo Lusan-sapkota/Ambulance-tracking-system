@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambulance Booking</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/booking.css') }}">
+</head>
+<body>
+
+<div class="container mt-5 bg-dark text-light">
+    <h2 class="text-center mb-4">Request an Ambulance</h2>
+
+    <!-- Display Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="container mt-3">
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+    
+    <div class="row text-light">
+        <div class="col-md-7 mb-4" style="border-right: 2px solid #fff; padding-right: 30px;">
+            <form id="booking-form" action="/book_ambulance" method="POST">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Patient Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="contact" class="form-label">Contact Number</label>
+                    <input type="text" class="form-control" id="contact" name="contact" required>
+                </div>
+                <div class="mb-3">
+                    <label for="location" class="form-label">Pickup Location</label>
+                    <input type="text" class="form-control" id="location" name="location" required>
+                    <button type="button" class="btn btn-outline-light btn-sm mt-2" id="get-location">Enable Precise Location</button>
+                </div>
+                <div class="mb-3">
+                    <label for="search-radius">Select Search Radius:</label>
+                    <select id="search-radius" class="form-select">
+                        <option value="1000">1 km</option>
+                        <option value="3000" selected>3 km</option>
+                        <option value="5000">5 km</option>
+                        <option value="7000">7 km</option>
+                        <option value="10000">10 km</option>
+                        <option value="15000">15 km</option>
+                    </select>
+                    <button type="button" class="btn btn-outline-light btn-sm mt-2" id="get-hospitals">Get Hospitals</button>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="destination" class="form-label">Select Nearest Hospital</label>
+                    <select class="form-select" id="destination" name="destination" required>
+                        <option value="">Choose a hospital</option>
+                    </select>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="ambulance_type" class="form-label">Ambulance Type</label>
+                    <select class="form-select" id="ambulance_type" name="ambulance_type" required>
+                        <option value="">Select Type</option>
+                        <option value="Basic">Basic Life Support</option>
+                        <option value="Advanced">Advanced Life Support</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success ms-2">Request Ambulance</button>
+                <a type="submit" class="btn btn-primary" href="{{ url_for('index') }}">Go to Home</a>
+            </form>
+        </div>
+
+        <div class="col-md-5">
+            <div class="mb-4">
+                <h5>Emergency Helpline</h5>
+                <p><strong>Phone:</strong> <a href="tel:+9771234567890">+977 1 234 567 890</a></p>
+            </div>
+            <div class="row text-light">
+                <div class="col-md-7 mb-4">
+                    <form action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="16ad643b-9548-4898-8d39-b2edfa9c5685">
+                        
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Your Full Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Your Email Address</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="rating" class="form-label">Rate Your Experience</label>
+                            <select class="form-select" id="rating" name="rating" required>
+                                <option value="">Select a Rating</option>
+                                <option value="5">5 - Excellent</option>
+                                <option value="4">4 - Good</option>
+                                <option value="3">3 - Average</option>
+                                <option value="2">2 - Poor</option>
+                                <option value="1">1 - Terrible</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Your Feedback</label>
+                            <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-success">Submit Feedback</button>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% import 'macros.html' as components %}
+{{ components.footer() }}
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.2/socket.io.js"></script>
+<script src="{{ url_for('static', filename='js/booking.js') }}"></script>
+</body>
+</html>

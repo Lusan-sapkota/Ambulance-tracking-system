@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Admin - Identity Verification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/contact_admin.css') }}">
+</head>
+<body>
+
+<div class="container mt-5 bg-dark text-light">
+    <h2 class="text-center mb-4">Contact Admin - Identity Verification</h2>
+
+    <!-- Display Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="container mt-3">
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    <strong>{{ message }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+    
+    <div class="row text-light">
+        <div class="col-md-7 mb-4" style="border-right: 2px solid #fff; padding-right: 30px;">
+            <form action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="16ad643b-9548-4898-8d39-b2edfa9c5685">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Your Full Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="contact" class="form-label">Contact Number</label>
+                    <input type="text" class="form-control" id="contact" name="contact" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Your Email Address</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="identity" class="form-label">Upload Identity Document</label>
+                    <input type="file" class="form-control" id="identity" name="identity" accept="image/*,application/pdf" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-success">Submit Request</button>
+            </form>
+        </div>
+
+        <div class="col-md-5">
+            <div class="mb-4">
+                <h5>Emergency Admin Contact</h5>
+                <p><strong>Phone:</strong> <a href="tel:+9779847576548">+977 98 47 576 548</a></p>
+                <h5>Location</h5>
+                <p>Room No 103, SwiftAid, Kathmandu, Nepal</p>
+                <h5>Remembered the Password?</h5>
+                <a href="{{ url_for('admin_login') }}" class="btn btn-outline-light btn-sm">
+                    Go to Admin Login <i class="fas fa-lock"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Home link with small icon -->
+    {% import 'macros.html' as icons %}
+    {{ icons.bootstrap_icons() }}
+</div>
+{% import 'macros.html' as components %}
+{{ components.footer() }}
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

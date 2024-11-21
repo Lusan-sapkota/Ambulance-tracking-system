@@ -1,0 +1,269 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ambulance Booking System</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Latest FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top ">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <img src="{{ url_for('static', filename='images/logos/swiftaid-logo.png') }}" alt="Logo" width="70" height="40" class="d-inline-block align-text-bottom">
+                <span class="swiftaid-logo">SwiftAid</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a id="home-link" class="nav-link" href="#welcome-hero">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="about-link" class="nav-link" href="#about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="contact-link" class="nav-link" href="#contact">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link tracking" href="{{ url_for('tracking') }}">Ambulance Tracking</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary mx-2" href="{{ url_for('admin_login') }}">Admin Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-success mx-2" href="{{ url_for('booking') }}">Book Ambulance</a>
+                    </li>
+                </ul>
+            </div>                                              
+        </div>
+    </nav>
+
+    <!-- Welcome Hero Section -->
+    <section id="welcome-hero" class="welcome-hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="header-text">
+                        <h2>Welcome to <span>SwiftAid</span>,<br>Your Lifeline in Emergencies<span>.</span></h2>
+                        <p>SwiftAid: Fast, reliable, and compassionate care when you need it most.</p>
+                        <a href="{{ url_for('booking') }}" class="btn btn-success btn-lg">Hire an Ambulance</a>
+                        <a href="#contact" class="btn btn-outline-light btn-lg">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- About Us Section -->
+    <section id="about" class="py-5 bg-dark text-light">
+        <div class="container">
+            <h2 class="text-center mb-4">About Us</h2>
+            <p class="mx-auto">
+                At SwiftAid, we are unwavering in our commitment to providing fast, dependable, and professional ambulance services whenever every second counts. We understand that in a medical emergency, time is of the essence, which is why we have designed a platform that is not only easy to use but also highly efficient, allowing individuals to quickly book ambulances with real-time tracking to ensure the nearest available vehicle is dispatched without delay. Our advanced system ensures you receive help as quickly as possible, no matter where you are.
+            </p>
+            
+            <p class="mx-auto">
+                Our dedicated team of certified paramedics, equipped with the latest medical knowledge and life-saving skills, is always ready to respond swiftly. Each of our state-of-the-art ambulances is fitted with modern medical equipment to handle a wide range of emergency situations—from medical crises requiring immediate attention to critical transport for patients needing specialized care, as well as non-emergency medical transportation for routine transfers. Whether it’s a heart attack, stroke, accident, or scheduled hospital transfer, you can rely on us to deliver rapid and reliable medical assistance.
+            </p>
+            
+            <p class="mx-auto">
+                We believe that the quality of care should never be compromised, no matter the urgency of the situation. Our team’s priority is to provide compassionate care, ensuring that you or your loved ones receive the best treatment during some of the most challenging moments. Our ambulances are fully equipped to handle critical situations, and our highly trained staff will work tirelessly to ensure that you are in good hands as you are transported safely to the hospital.
+            </p>
+            
+            <p class="mx-auto">
+                At SwiftAid, our mission is more than just transporting patients; we are dedicated to saving lives and providing peace of mind in times of distress. With our innovative platform, you can track your ambulance in real time, giving you the reassurance that help is on the way. Whether you're experiencing an emergency or arranging a non-urgent transport, we’re here to offer support and ensure that you reach your destination safely and promptly.
+            </p>
+            
+            <p class="mx-auto">
+                We operate with the highest levels of integrity, professionalism, and compassion, always keeping your safety and well-being as our top priority. Because when every second matters, you need a partner you can trust—SwiftAid.
+            </p>                       
+
+            <!-- Features Section with Cards -->
+            <div class="row mt-5 g-3">
+                <h2 class="text-center mb-4">Why US?</h2>
+                <!-- Feature 1: Real-Time Tracking -->
+                <div class="col-md-4">
+                    <div class="card transparent-card mb-4">
+                        <div class="card-body text-center">
+                            <i class="fas fa-map-marker-alt fa-4x text-primary mb-3"></i>
+                            <h5 class="card-title">Real-Time Tracking</h5>
+                            <p class="card-text">
+                                Track your ambulance in real-time with our GPS-enabled service to ensure timely arrival and enhanced safety.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 2: Quick Response -->
+                <div class="col-md-4">
+                    <div class="card transparent-card mb-4">
+                        <div class="card-body text-center">
+                            <i class="fas fa-ambulance fa-4x text-danger mb-3"></i>
+                            <h5 class="card-title">Quick Response</h5>
+                            <p class="card-text">
+                                Our system ensures the nearest available ambulance is dispatched immediately for rapid emergency response.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 3: 24/7 Availability -->
+                <div class="col-md-4">
+                    <div class="card transparent-card mb-4">
+                        <div class="card-body text-center">
+                            <i class="fas fa-clock fa-4x text-success mb-3"></i>
+                            <h5 class="card-title">24/7 Availability</h5>
+                            <p class="card-text">
+                                We operate around the clock, providing continuous support and service to ensure help is available when you need it most.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 4: Skilled Professionals -->
+                <div class="col-md-4">
+                    <div class="card transparent-card mb-4">
+                        <div class="card-body text-center">
+                            <i class="fas fa-user-md fa-4x text-warning mb-3"></i>
+                            <h5 class="card-title">Skilled Professionals</h5>
+                            <p class="card-text">
+                                Our certified paramedics are trained to handle emergencies with expertise, ensuring top-quality care.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 5: State-of-the-Art Ambulances -->
+                <div class="col-md-4">
+                    <div class="card transparent-card mb-4">
+                        <div class="card-body text-center">
+                            <i class="fas fa-car-crash fa-4x text-info mb-3"></i>
+                            <h5 class="card-title">State-of-the-Art Ambulances</h5>
+                            <p class="card-text">
+                                Our fleet is equipped with the latest medical technology to ensure efficient patient transport.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 6: Affordable Service -->
+                <div class="col-md-4">
+                    <div class="card transparent-card mb-4">
+                        <div class="card-body text-center">
+                            <i class="fas fa-dollar-sign fa-4x text-muted mb-3"></i>
+                            <h5 class="card-title">Affordable Service</h5>
+                            <p class="card-text">
+                                We offer competitive pricing to ensure everyone has access to reliable emergency transport.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Contact Us Section -->
+    <section id="contact" class="py-5 bg-dark text-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Contact Us</h2>
+            <div class="row">
+                <!-- Left: Contact Form (Bigger Width) -->
+                <div class="col-md-7 mb-4" style="border-right: 2px solid #fff; padding-right: 30px;">
+                    <form action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="16ad643b-9548-4898-8d39-b2edfa9c5685">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="number" class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" id="number" name="number" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" class="form-control" id="subject" name="subject" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+
+                <!-- Right: Location, Contact Info & Follow Us (Smaller Width) -->
+                <div class="col-md-5">
+                    <div class="mb-4">
+                        <h5>Emergency Helpline</h5>
+                        <p><strong>Phone:</strong> <a href="tel:+9771234567890" class="emergency-phone">+977 1 234 567 890</a></p>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5>Our Location</h5>
+                        <p>123 Emergency Lane</p>
+                        <p>Kathmandu, Nepal 44600</p>
+                        <a href="https://www.google.com/maps" target="_blank" class="btn btn-outline-light btn-sm">
+                            View on Map <i class="fas fa-map-marker-alt"></i>
+                        </a>
+                    </div>
+
+                    <div class="mb-4">
+                        <h5>Contact Us</h5>
+                        <p><strong>Email:</strong> support@swiftaid.com</p>
+                        <p><strong>Phone:</strong> <a href="tel:+9771674936890">+977 1 674 936 890</a></p>
+                        <a href="mailto:support@swiftaid.com" class="btn btn-outline-light btn-sm">
+                            Send Email <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+
+                    <div>
+                        <h5>Follow Us</h5>
+                        <a href="https://www.facebook.com" target="_blank" class="btn btn-outline-light btn-sm mx-2">
+                            <i class="fab fa-facebook"></i> Facebook
+                        </a>
+                        <a href="https://www.twitter.com" target="_blank" class="btn btn-outline-light btn-sm mx-2">
+                            <i class="fab fa-twitter"></i> Twitter
+                        </a>
+                        <a href="https://www.instagram.com" target="_blank" class="btn btn-outline-light btn-sm mx-2">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="text-center py-5 bg-dark text-light">
+        <div class="container">
+            <!-- Copyright -->
+            <hr class="border-light">
+            <p>&copy; 2023 SwiftAid. All rights reserved.</p>
+            <p><a href="{{ url_for('privacy_policy') }}">Privacy Policy</a> | <a href="{{ url_for('terms_of_service') }}">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>

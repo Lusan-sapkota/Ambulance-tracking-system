@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service | SwiftAid</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000000;
+            color: #fff;
+        }
+        .container {
+            margin-top: 40px;
+        }
+        .heading {
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+        .terms-content {
+            background-color: #222;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        a {
+            color: #ffc107;
+        }
+        a:hover {
+            color: #ffdd57;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="terms-content">
+                    <h1 class="text-center heading">Terms of Service</h1>
+                    <p>Effective Date: <strong>November 2024</strong></p>
+                    <hr>
+
+                    <h3>1. Introduction</h3>
+                    <p>Welcome to SwiftAid. By using our services, you agree to comply with the following terms and conditions. If you do not agree with any of these terms, please discontinue using our website.</p>
+
+                    <h3>2. Service Description</h3>
+                    <p>SwiftAid provides ambulance tracking services, helping users monitor the location and estimated arrival time of ambulances in real time.</p>
+
+                    <h3>3. User Responsibilities</h3>
+                    <ul>
+                        <li>Users must provide accurate, up-to-date information.</li>
+                        <li>Users are prohibited from using the service for unlawful purposes.</li>
+                        <li>Users must comply with applicable laws regarding emergency medical services.</li>
+                    </ul>
+
+                    <h3>4. Account Registration</h3>
+                    <p>Some features of SwiftAid may require account registration. You are responsible for keeping your account details secure.</p>
+
+                    <h3>5. Service Availability</h3>
+                    <p>We strive to provide continuous service, but we cannot guarantee uptime due to possible network failures or maintenance.</p>
+
+                    <h3>6. Intellectual Property</h3>
+                    <p>The content on SwiftAid is protected by copyright law and is the property of SwiftAid or its licensors.</p>
+
+                    <h3>7. Liability Limitations</h3>
+                    <p>SwiftAid is not responsible for any indirect or consequential damages resulting from the use of our services.</p>
+
+                    <h3>8. Privacy and Data Protection</h3>
+                    <p>Your privacy is important to us. Please review our <a href="{{ url_for('privacy_policy') }}">Privacy Policy</a> for details on how we collect and use your data.</p>
+
+                    <h3>9. Changes to Terms</h3>
+                    <p>SwiftAid reserves the right to update these Terms of Service. Changes will be posted on this page, and the updated date will be indicated.</p>
+
+                    <h3>10. Governing Law</h3>
+                    <p>These terms are governed by the laws of Nepal, and any disputes will be resolved in the courts of Nepal.</p>
+
+                    <h3>11. Contact Information</h3>
+                    <p>If you have any questions regarding these Terms of Service, please contact us at:</p>
+                    <p>Email: <strong>support@swiftaid.com</strong></p>
+                    <p>Phone: <strong>+977 1 4234567</strong></p>
+                    <p>Address: <strong>SwiftAid, Kathmandu, Nepal</strong></p>
+
+                    <hr>
+                    <p class="text-center"><a href="{{ url_for('index') }}" class="btn btn-primary">Back to Home</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

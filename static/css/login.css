@@ -1,0 +1,147 @@
+:root {
+    --bg-opacity: 0.7;
+    --card-bg-color: rgba(0, 0, 0, var(--bg-opacity)); /* Transparent background for the card */
+    --text-color-light: #fff;
+    --button-bg-color: #007bff;
+    --button-bg-color-hover: #0056b3;
+    --link-color: #fff;
+    --link-hover-color: #ddd;
+    --font-family: 'Roboto', sans-serif;
+    --bg-overlay-color: rgba(0, 0, 0, 0.5);
+    --box-shadow-color: rgba(0, 0, 0, 0.3); /* Shadow color for the login card */
+    --card-padding: 40px;
+    --form-control-border-color: rgba(255, 255, 255, 0.5);
+}
+
+body {
+    background-image: url('../images/covers/ambulance.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
+    font-family: var(--font-family);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    position: relative;
+}
+
+/* Dark overlay to improve visibility of the login form */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--bg-overlay-color);
+    z-index: -1; /* Ensure overlay is behind the content */
+}
+
+/* Transparent Login Card */
+.login-card {
+    background-color: var(--card-bg-color); /* Transparent background */
+    color: var(--text-color-light);
+    border-radius: 15px;
+    padding: var(--card-padding);
+    box-shadow: 0 4px 10px var(--box-shadow-color);
+    width: 100%;
+    max-width: 450px; /* Increased width for a more spacious layout */
+    text-align: center;
+    backdrop-filter: blur(8px); /* Optional: adds blur effect to the background */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-card:hover {
+    transform: scale(1.03); /* Slight scaling effect on hover for modern look */
+    box-shadow: 0 8px 20px var(--box-shadow-color); /* Enhanced shadow effect */
+}
+
+.login-card h2 {
+    margin-bottom: 30px;
+    font-size: 2.2rem;
+    font-weight: bold;
+}
+
+.login-card .form-control {
+    border-radius: 25px; /* Rounder borders for a modern look */
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.3); /* Slight background transparency for inputs */
+    border: 1px solid var(--form-control-border-color);
+    color: var(--text-color-light);
+    transition: border-color 0.3s ease;
+}
+
+.login-card .form-control:focus {
+    border-color: var(--button-bg-color);
+    outline: none;
+}
+
+.login-card button {
+    border-radius: 25px;
+    padding: 15px;
+    width: 100%;
+    background-color: var(--button-bg-color);
+    border: none;
+    color: var(--text-color-light);
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.login-card button:hover {
+    background-color: var(--button-bg-color-hover);
+    transform: translateY(-2px); /* Small lift effect on hover */
+}
+
+.login-card .form-text {
+    color: var(--text-color-light);
+    font-size: 0.9rem;
+}
+
+.forgot-password,
+.home-link {
+    color: var(--link-color);
+    font-size: 1rem;
+    text-decoration: none;
+    display: block;
+    margin-top: 15px;
+    font-weight: 500;
+}
+
+.forgot-password:hover,
+.home-link:hover {
+    color: var(--link-hover-color);
+    text-decoration: underline;
+}
+
+.home-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.home-link i {
+    margin-right: 5px;
+}
+
+.alert-warning {
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Customize the links for better contrast */
+
+.forgot-password {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    color: var(--button-bg-color);
+}
