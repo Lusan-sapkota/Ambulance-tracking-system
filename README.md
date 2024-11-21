@@ -4,7 +4,17 @@ Documentation for the **SwiftAid Ambulance Tracking System**:
 # SwiftAid Ambulance Tracking System
 
 ## Overview
-SwiftAid is a comprehensive ambulance tracking and management system designed to streamline emergency medical services. The system allows for real-time tracking of ambulances, efficient dispatch management, and provides a user-friendly interface for both administrators and patients.
+SwiftAid is a comprehensive ambulance tracking and management system designed to streamline emergency medical services. The system allows for real-time tracking of ambulances, efficient dispatch management, and 
+provides a user-friendly interface for both administrators and patients.
+
+## Some ScreenShots
+
+![Screenshot_21-11-2024_213523_192 168 18 2](https://github.com/user-attachments/assets/3c4b4bb4-87d5-4b13-b61d-3302664c787e)
+![Screenshot_21-11-2024_213630_192 168 18 2](https://github.com/user-attachments/assets/9e9b5ddb-a5f4-4dd5-a263-404a6558992d)
+![Screenshot_21-11-2024_213659_192 168 18 2](https://github.com/user-attachments/assets/b99c8263-d127-41b5-acf2-9a651123c63b)
+
+## Main Admin (Can add/remove/reset secondary admin)
+![Screenshot_21-11-2024_21384_192 168 18 2](https://github.com/user-attachments/assets/c5ac0950-4b48-4d7f-aba6-2e87f7d40b84)
 
 ---
 
