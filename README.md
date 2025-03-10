@@ -9,10 +9,24 @@ SwiftAid is a comprehensive ambulance tracking and management system designed to
 ## Key Screenshots
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/3c4b4bb4-87d5-4b13-b61d-3302664c787e" alt="Patient Interface" width="32%">
-  <img src="https://github.com/user-attachments/assets/9e9b5ddb-a5f4-4dd5-a263-404a6558992d" alt="Tracking View" width="32%">
-  <img src="https://github.com/user-attachments/assets/b99c8263-d127-41b5-acf2-9a651123c63b" alt="Hospital Finder" width="32%">
+  <table>
+    <tr>
+      <td align="center">
+        <img src="https://github.com/user-attachments/assets/3c4b4bb4-87d5-4b13-b61d-3302664c787e" alt="Patient Interface" width="100%">
+        <br><b>Patient Interface</b>
+      </td>
+      <td align="center">
+        <img src="https://github.com/user-attachments/assets/9e9b5ddb-a5f4-4dd5-a263-404a6558992d" alt="Tracking View" width="100%">
+        <br><b>Tracking View</b>
+      </td>
+      <td align="center">
+        <img src="https://github.com/user-attachments/assets/b99c8263-d127-41b5-acf2-9a651123c63b" alt="Hospital Finder" width="100%">
+        <br><b>Hospital Finder</b>
+      </td>
+    </tr>
+  </table>
 </div>
+
 
 ### Main Admin Dashboard
 The main administrator can add, remove, and reset secondary admin accounts.
@@ -312,6 +326,9 @@ Access the application at [https://localhost:5001](https://localhost:5001).
 SwiftAid provides a robust solution for ambulance tracking and management, enhancing the efficiency of emergency medical services. Its real-time capabilities, user-friendly interfaces, and comprehensive admin tools make it a valuable asset for healthcare providers and patients alike.
 
 By reducing response times and optimizing resource allocation, SwiftAid contributes to improved patient outcomes in emergency situations.
+
+## Note
+This is just a prototype and can be further improved if developed into a full product. If you're interested in contributing or have any ideas, feel free to fork the repo or give it a star!
 
 ---
 
